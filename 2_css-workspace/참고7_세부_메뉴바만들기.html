@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴바만들기</title>
+    <style>
+        /* 작업을 위한 임시스타일 */
+        div {
+            /* border : 1px solid red; */
+            box-sizing : border-box;
+        }
+        #navigator {
+            width : 1000px;
+            height : 40px;
+        }
+
+        /* 메인 메뉴를 담당하는 navi 에 대한 스타일 */
+        #navi {
+            /* border : 1px solid blue; */
+            list-style-type : none;
+            margin : 0px; /* ul 요소도 기본적으로 위, 아래에 margin 이 존재 */
+            padding : 0px; /* ul 요소는 기본적으로 또한 padding 도 갖고있음 */
+            height : 100%;
+        }
+
+        /* 메인 메뉴 항목을 담당하는 li 요소들에 대한 스타일 */
+        #navi>li {
+            /* border : 1px solid blue; */
+            float : left;
+            width : 15%;
+            height : 100%;
+            text-align : center;
+        }
+
+        /* 메뉴바에 있는 모든 a 태그들을 일괄 선택하여 스타일 부여 */
+        #navi a {
+            /* border : 1px solid green; */
+            text-decoration : none;
+            color : lightcoral;
+            font-size : 13px;
+            font-weight : 900;
+            width : 100%;
+            height : 100%;
+            display : block; /* a 태그는 인라인요소이기 때문에 width, height 속성이 적용되지 않으므로 블럭요소화 해줘야함 */
+            /* vertical-align : middle; */ /* vertical-align 속성은 블럭요소에서 적용되지 않음 */
+            line-height : 35px; /* 장평조절 속성 */
+        }
+
+        /* 메뉴에 마우스가 올라갔을 때 추가적인 효과 */
+        #navi a:hover {
+            color : crimson;
+            font-size : 15px;
+        }
+
+        /* 서브메뉴를 담당하는 ul 태그에 대한 스타일 */
+        #navi>li>ul {
+            list-style-type : none;
+            padding : 0px;
+            display : none; /* 평소에는 안보여주다가 마우스가 올라가는 순간 보여지게끔 */
+        }
+
+        /* 메인메뉴에 마우스가 올라가는 순간 서브메뉴가 펼쳐져서 보이게끔 */
+        #navi>li>a:hover+ul {
+            display : block; /* 메인메뉴에만 마우스가 올라갔을때만 유지됨 */
+        }
+
+        /* 서브메뉴에도 마우스가 올라갈 때 펼쳐진게 유지될 수 있게끔 */
+        #navi>li>ul:hover {
+            display : block;
+        }
+
+        /* 서브메뉴 글씨만 좀 더 작게 보이게끔 */
+        #navi>li>ul a { font-size : 10px; }
+        #navi>li>ul a:hover { font-size : 13px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="navigator">
+        <ul id="navi">
+            <!-- (li>a)*5 + Enter -->
+            <li><a href="">Java</a></li>
+            <li><a href="">Oracle</a></li>
+            <li>
+                <a href="">Front-End</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">Ajax</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Framework</a>
+                <ul>
+                    <li><a href="">MyBatis</a></li>
+                    <li><a href="">Spring</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

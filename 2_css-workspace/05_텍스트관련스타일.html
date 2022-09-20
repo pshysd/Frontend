@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 관련 스타일</title>
+    <style>
+
+        #c {
+            color : red;
+            color : #FFA7A7;
+            color : rgb(0, 255, 13); /* 최대값은 255 */
+            color : rgba(0, 255, 13, 0.97); /* a 는 투명도 (0.0 ~ 1.0 사이, 숫자가 작을수록 더 투명) */
+            color : hsl(200, 50%, 50%); /* h 는 색상값 (0 ~ 360), s 는 채도 (%), l 은 명도 (%) */
+            color : hsla(200, 50%, 50%, 0.4); /* a 는 투명도 */
+        }
+
+        #td1 { text-decoration : underline; }
+        #td2 { text-decoration : line-through; }
+        #td3 { text-decoration : overline; }
+        #td4 { text-decoration : none; color : black; }
+
+        #tt1 { text-transform : uppercase; }
+        #tt2 { text-transform : lowercase; }
+        #tt3 { text-transform : capitalize; }
+
+        .shadow { font-size : 50px; font-weight : 900; }
+
+        #ts1 {
+            color : orangered;
+            text-shadow : 5px 5px 5px yellow;
+        }
+
+        #ts2 {
+            color : white;
+            text-shadow : 0px 0px 10px black;
+        }
+
+        #ts3 {
+            text-shadow : 0px 0px 4px gray,
+                          0px -5px 4px yellow,
+                          0px -10px 8px orange,
+                          0px -15px 14px orangered,
+                          0px -22px 19px red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>텍스트 관련 스타일 (text~)</h1>
+    
+    <h3>color : 텍스트의 색상을 지정</h3>
+
+    <pre id="c">
+        [ 표현법 ]
+        선택자 {
+            color : 색상명/16진수/rgb(x, x, x)/rgba(x, x, x, x)/hsl(x, x, x)/hsla(x, x, x, x);
+        }
+    </pre>
+
+    <hr>
+
+    <h3>text-decoration : 텍스트에 줄을 긋거나 줄을 없앨 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            text-decoration : none/underline/overline/line-through;
+        }
+    </pre>
+
+    <!-- ul>li#td$*3 -->
+    <ul>
+        <li id="td1">underline : 텍스트 영역 아래에 줄 긋기</li>
+        <li id="td2">line-through : 텍스트 영역 중간에 줄 긋기</li>
+        <li id="td3">overline : 텍스트 영역 위에 줄 긋기</li>
+    </ul>
+
+    <a href="http://www.naver.com" id="td4">네이버로</a>
+
+    <hr>
+
+    <h3>text-transform : 영문 텍스트의 대소문자 변환 시 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            text-transform : uppercase/lowercase/capitalize;
+        }
+    </pre>
+
+    <!-- ul>li#tt$*3 + Enter -->
+    <ul>
+        <li id="tt1">uppercase : 모든 영문자를 다 대문자로</li>
+        <li id="tt2">LOWERCASE : 모든 영문자를 다 소문자로</li>
+        <li id="tt3">capitalize : 영문자의 first text 만 대문자로</li>
+    </ul>
+    <!-- capitalize 속성값은 띄어쓰기 기준으로 앞 문자를 바꿔줌 -->
+
+    <hr>
+
+    <h3>text-align : 텍스트를 정렬할 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            text-align : left/justify/right/center;
+        }
+    </pre>
+
+    <h4>양쪽 정렬</h4>
+    <p style="text-align : justify;">
+        옷을 부패를 그들은 것은 열매를 봄날의 이것이다. 풀밭에 열락의 없으면 힘차게 그들에게 설레는 예수는 뛰노는 품으며, 부패뿐이다. 쓸쓸한 가는 안고, 속에 끝에 것이다. 그들의 구하지 만천하의 얼마나 소담스러운 같이, 인생을 사막이다. 가치를 위하여서 피가 사막이다. 크고 발휘하기 심장의 목숨이 새 바이며, 충분히 그것을 우리 칼이다. 그러므로 따뜻한 그들의 보이는 하는 얼음이 약동하다. 천고에 불어 청춘의 예가 트고, 이상 할지라도 청춘 방황하였으며, 것이다. 싶이 황금시대를 이상, 것이다. 풀이 뭇 보는 만물은 품고 생명을 길을 약동하다.
+
+꾸며 열매를 풍부하게 봄바람이다. 같이 하는 청춘의 부패뿐이다. 옷을 주는 위하여 능히 목숨이 가는 품으며, 소금이라 산야에 때문이다. 생명을 위하여 바로 피고 고동을 봄바람이다. 것은 하는 청춘의 바이며, 풍부하게 가치를 부패뿐이다. 인생에 만천하의 관현악이며, 꾸며 우는 것이다. 사라지지 용기가 끓는 풀밭에 이것이다. 찾아다녀도, 피어나는 천지는 바이며, 무엇이 봄바람이다. 불어 유소년에게서 남는 예수는 이것이다.
+    </p>
+
+    <h4>오른쪽 정렬</h4>
+    <p style="text-align : right;">
+        옷을 부패를 그들은 것은 열매를 봄날의 이것이다. 풀밭에 열락의 없으면 힘차게 그들에게 설레는 예수는 뛰노는 품으며, 부패뿐이다. 쓸쓸한 가는 안고, 속에 끝에 것이다. 그들의 구하지 만천하의 얼마나 소담스러운 같이, 인생을 사막이다. 가치를 위하여서 피가 사막이다. 크고 발휘하기 심장의 목숨이 새 바이며, 충분히 그것을 우리 칼이다. 그러므로 따뜻한 그들의 보이는 하는 얼음이 약동하다. 천고에 불어 청춘의 예가 트고, 이상 할지라도 청춘 방황하였으며, 것이다. 싶이 황금시대를 이상, 것이다. 풀이 뭇 보는 만물은 품고 생명을 길을 약동하다.
+
+꾸며 열매를 풍부하게 봄바람이다. 같이 하는 청춘의 부패뿐이다. 옷을 주는 위하여 능히 목숨이 가는 품으며, 소금이라 산야에 때문이다. 생명을 위하여 바로 피고 고동을 봄바람이다. 것은 하는 청춘의 바이며, 풍부하게 가치를 부패뿐이다. 인생에 만천하의 관현악이며, 꾸며 우는 것이다. 사라지지 용기가 끓는 풀밭에 이것이다. 찾아다녀도, 피어나는 천지는 바이며, 무엇이 봄바람이다. 불어 유소년에게서 남는 예수는 이것이다.
+    </p>
+
+    <h4>가운데 정렬</h4>
+    <p style="text-align : center;">
+        옷을 부패를 그들은 것은 열매를 봄날의 이것이다. 풀밭에 열락의 없으면 힘차게 그들에게 설레는 예수는 뛰노는 품으며, 부패뿐이다. 쓸쓸한 가는 안고, 속에 끝에 것이다. 그들의 구하지 만천하의 얼마나 소담스러운 같이, 인생을 사막이다. 가치를 위하여서 피가 사막이다. 크고 발휘하기 심장의 목숨이 새 바이며, 충분히 그것을 우리 칼이다. 그러므로 따뜻한 그들의 보이는 하는 얼음이 약동하다. 천고에 불어 청춘의 예가 트고, 이상 할지라도 청춘 방황하였으며, 것이다. 싶이 황금시대를 이상, 것이다. 풀이 뭇 보는 만물은 품고 생명을 길을 약동하다.
+
+꾸며 열매를 풍부하게 봄바람이다. 같이 하는 청춘의 부패뿐이다. 옷을 주는 위하여 능히 목숨이 가는 품으며, 소금이라 산야에 때문이다. 생명을 위하여 바로 피고 고동을 봄바람이다. 것은 하는 청춘의 바이며, 풍부하게 가치를 부패뿐이다. 인생에 만천하의 관현악이며, 꾸며 우는 것이다. 사라지지 용기가 끓는 풀밭에 이것이다. 찾아다녀도, 피어나는 천지는 바이며, 무엇이 봄바람이다. 불어 유소년에게서 남는 예수는 이것이다.
+    </p>
+
+    <hr>
+
+    <h3>text-shadow : 텍스트에 그림자 효과를 줄 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            text-shadow : 가로거리(x) 세로거리(y) 번짐정도 색상;
+        }
+
+        - 번짐정도와 색상은 생략 가능
+        - 가로거리와 세로거리가 양수 일 경우 오른쪽 아래에 생성
+        - 가로거리와 세로거리가 음수 일 경우 왼쪽 위에 생성
+        - 번짐정도가 0 일 경우 그림자 색이 진하다.
+        - 색상은 기본값이 글자색과 같다.
+    </pre>
+
+    <!-- div>span.shadow#ts${HTML}*3 + Enter -->
+    <div>
+        <span class="shadow" id="ts1">HTML</span> <br><br><br>
+        <span class="shadow" id="ts2">HTML</span> <br><br><br>
+        <span class="shadow" id="ts3">HTML</span>
+    </div>
+
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
