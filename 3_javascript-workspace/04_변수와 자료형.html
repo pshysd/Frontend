@@ -141,9 +141,108 @@
             // 그러면 전역 변수에 접근하고자 할 경우에는? => window. 또는 this. 전역변수명
             console.log(window.str);
             console.log(this.str);
-        }
-    </script>
 
+            console.log('--- str2 ---');
+            console.log(str2); // 전역변수
+            console.log(window.str2);
+            console.log(this.str2);
+
+            console.log('--- str3 ---');
+            console.log(str3); // 새로운 지역변수
+            console.log(window.str3); // undefined(정의되어있지 않음)
+            console.log(this.str3);
+
+            console.log('--- str4 ---');
+            console.log(str4);
+            console.log(window.str4); // '난 뭘까요'가 찍히기 때문에 전역변수임을 알 수 있다.
+            console.log(this.str4);
+            // 지역변수 선언 시 var를 생략할 경우 전역변수로 취급된다.
+        }
+
+        function test() {
+            console.log('전역변수들 출력!');
+            console.log(str);
+            console.log(str2);
+            console.log(str4);
+        }
+
+
+    </script>
+    <button onclick="test()">클릭</button>
+
+    <hr>
+
+    <h3>* 자료형</h3>
+
+    <pre>
+        자바스크립트에서는 변수 선언 시 자료형을 별도로 지정하지 않음 (자료형의 개념이 없는건 아니다)
+        -> 변수에 대입되는 값(리터럴)에 따라서 알아서 자료형이 자동으로 결정됨 (타입추론)
+    </pre>
+
+    <h4>자바스크립트의 자료형</h4>
+
+    <ul>
+        <li>string (문자열)</li>
+        <li>number (숫자)</li>
+        <li>boolean (논리값)</li>
+        <li>object (객체)</li>
+        <li>function (함수)</li>
+        <li>undefined (초기화가 안된 변수)</li>
+    </ul>
+
+    <button onclick="typeTest()">자료형 테스트</button>
+    <div id="area" style="border : 1px solid black;"></div>
+
+    <script>
+        function typeTest() {
+
+            var name = '홍길동';
+            var age = 20;
+            var flag = true;
+
+            var hobby = ['영화', '음악', '낮잠']; // 배열
+            var user = { // 객체
+                name: '김말똥',
+                age: 30,
+                id: 'user01'
+            };
+
+            var testFn = function () {
+                alert('zz');
+            };
+            var noVal;
+
+            console.log(name);
+            console.log(age);
+            console.log(flag);
+            console.log(hobby);
+            console.log(user);
+            console.log(testFn);
+            console.log(noVal);
+
+            var div = document.querySelector('#area'); // 요소 객체
+
+            div.innerHTML = `${name}의 자료형 : ${typeof (name)} <br>`
+            div.innerHTML += `${age}의 자료형 :${typeof (age)} <br>`
+            div.innerHTML += `${flag}의 자료형 : ${typeof (flag)} <br>`
+            div.innerHTML += `${hobby}의 자료형 :${typeof (hobby)} <br>`
+            // 배열도 object로 취급된다.
+            // 배열의 내용물들이 하나의 문자열로 연이어져서 출력됨
+            div.innerHTML += `${user}의 자료형 : ${typeof (user)} <br>`
+            // 객체도 object
+            // 출력 시 객체의 내용물들이 보이지 않고 단순히 [object Object]라고 출력됨
+            div.innerHTML += `${testFn}의 자료형 : ${typeof (testFn)} <br>`
+            // 함수의 경우 함수 정의 내용이 화면에 다 출력됨
+            div.innerHTML += `${noVal}의 자료형 : ${typeof (noVal)} <br>`
+
+            // 객체 내부의 속성에 접근하려면? -> .으로 접근
+
+            div.innerHTML += '<hr>'
+            div.innerHTML += `${user.name}의 나이는 ${user.age}살이며 아이디는 ${user.id}입니다.`
+        }
+
+
+    </script>
 </body>
 
 </html>
