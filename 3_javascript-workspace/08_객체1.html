@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체 1</title>
+    <style>
+      .area {
+        background-color: lightgrey;
+        border: 1px solid black;
+      }
+      .small {
+        height: 200px;
+      }
+      .big {
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>객체</h1>
+
+    <pre>
+        객체는 중괄호 {}를 사용해서 생성하고,
+        중괄호 안에 이 객체에 필요로 하는 속성들을 정의함
+        이 속성들은 속성:속성 값 형태로 정의함 (키:밸류)
+        속성 값으로는 모든 자료형의 값을 담을 수 있음 (string, number, boolean, array, object, function, ...)
+    </pre>
+
+    <pre>
+        [ 표현법 ]
+        var(const, let) 변수명 = {
+            속성명 : 속성값;
+            속성명 : 속성값;
+            속성명 : 속성값;
+            ...
+        };
+    </pre>
+
+    <button id="btn1">실행확인</button>
+
+    <div id="area1" class="area big"></div>
+
+    <script>
+      const btn1 = document.querySelector('#btn1');
+      const area1 = document.querySelector('#area1');
+
+      function test1() {
+        // 자바스크립트에서의 배열 : 자바에서의 ArrayList와 비슷한 개념
+        let arr = ['Dry Mango', 4000, 'pickle', ['mango', 'sugar']];
+
+        // 자바스크립트에서의 객체 : 자바에서의 HashMap과 비슷한 개념
+        let product = {
+          pName: 'Dry Mango',
+          price: 4000,
+          kind: 'pickle',
+          ingredient: ['mango', 'sugar'],
+        };
+
+        // console.log(product);
+        // console.log(typeof product);
+
+        area1.innerHTML = `product : ${product} <br>`;
+        // 요소 안에 객체를 출력하고자 객체 명을 제시한 경우
+        // 기본적으로 [object Object]로 출력된다...
+
+        // 해당 객체 내부의 각 속성에 접근하는 방법
+        // 방법1. 대괄호를 이용하는 방법 : 객체명['속성명'];
+        area1.innerHTML += `<b>방법1. 객체명['속성명']으로 접근하기</b> <br>`;
+        area1.innerHTML += "product['pName'] : " + product['pName'] + '<br>';
+        area1.innerHTML += "product['price'] : " + product['price'] + '<br>';
+        area1.innerHTML += "product['kind'] : " + product['kind'] + '<br>';
+        area1.innerHTML += "product['ingredient'] : " + product['ingredient'] + '<br>';
+        area1.innerHTML += "product['ingredient'][0] : " + product['ingredient'][0] + '<br>';
+        area1.innerHTML += 'hr';
+
+        // 방법2. .을 이용하는 방법 : 객체명.속성명
+        area1.innerHTML += '<b>방법2. 객체명.속성명으로 접근하기 </b> <br>';
+        area1.innerHTML += 'product.pName : ' + product.pName + '<br>';
+        area1.innerHTML += 'product.price : ' + product.price + '<br>';
+        area1.innerHTML += 'product.kind : ' + product.kind + '<br>';
+        area1.innerHTML += 'product.ingredient : ' + product.ingredient + '<br>';
+        area1.innerHTML += 'product.ingredient[0] : ' + product.ingredient[0] + '<br>';
+        area1.innerHTML += 'product.ingredient[1] : ' + product.ingredient[1] + '<br>';
+
+        area1.innerHTML += `product : ${JSON.stringify(product)} <br>`;
+      }
+
+      btn1.addEventListener('click', test1);
+    </script>
+
+    <h3>* 객체 생성 특이케이스(속성명 제시시 반드시 문자열 형태로 제시해야되는 케이스)</h3>
+
+    <button id="btn2">실행확인</button>
+
+    <div id="area2" class="area small"></div>
+
+    <script>
+      btn2 = document.querySelector('#btn2');
+      function test2() {
+        // 기존의 자바에서의 변수명이나 필드명을 지어줄 경우 공백이나 특수문자 포함이 불가했음
+        // 자바스크립트에서의 객체의 속성명을 지어줄 경우 공백이나 특수문자 포함이 가능함
+        const user = {
+          'user name': '홍길동',
+          'age!!': 20,
+        };
+
+        // console.log(user);
+
+        // area2.innerHTML = `user name : ${user.'user name'} <br>`
+        // area2.innerHTML += `age!! : ${user.age!!`} <br>`
+        // ->이 경우에는 .을 이용해서 속성 값에 접근할 수 없다.
+
+        // 대괄호를 이용하여 속성 값에 접근 : 객체명['속성명']
+        area2.innerHTML += `user name : ${user['user name']} <br>`;
+        area2.innerHTML += `age!! : ${user['age!!']} <br>`;
+        // -> 이 경우 대괄호를 이용하여 속성 값에 접근해야만 한다. . .
+      }
+
+      btn2.addEventListener('click', test2);
+    </script>
+
+    <hr />
+
+    <h3>* 객체에서의 반복문</h3>
+
+    <pre>
+        객체가 가지고 있는 모든 속성들에 순차적으로 접근하고자 한다면 반복문을 사용 가능함
+        단, 단순 for loop 문으로는 불가능하고 for in 문만 사용가능함
+    </pre>
+
+    <button id="btn3">실행확인</button>
+
+    <div id="area3" class="area small"></div>
+
+    <script>
+      const btn3 = document.querySelector('#btn3');
+      const area3 = document.querySelector('#area3');
+
+      function test3() {
+        /* 자바에서의 for each문(향상된 for문)
+        for(자료형 변수명 : 반복하고자하는배열명또는컬렉션명) {
+
+            해당 변수명에 매번 배열 또는 컬렉션에 들어있는
+            0번 인덱스에서부터 마지막 인덱스에 들은 '값 자체' 가 들어있는 개념
+        }
+
+        * 자바스크립트에서의 for in (for each는 지원하지않음)
+        for(let 변수명 in 배열명 또는 객체명){
+            해당 변수명에 매번 배열 또는 객체에 들어있는
+            배열일 경우 : 0번 인덱스에서부터 마지막 '인덱스 값'이 들어있는 개념
+            객체일 경우 : 첫번째 속성명에서부터 마지막 '속성명'이 들어있는 개념 -> 자바의 Map의 keySet()과 비슷한 개념
+        }
+        */
+
+        // 자바스크립트에서의 배열
+        var arr = ['김갑생', 10, true];
+
+        for (let i in arr) {
+          // i : 0, 1, 2 => 0번에서 마지막 인덱스 값 자체가 들어있음
+          area3.innerHTML += `${i} : ${arr[i]} <br>`;
+        }
+        // in 뒤에 배열 제시시
+        // 반복문을 돌 때 마다 0에서부터 마지막 인덱스까지의 인덱스 수가 변수에 담김
+
+        //자바스크립트에서의 객체
+        let game = {
+          title: 'overwatch',
+          price: 35000,
+          language: 'korean',
+          supportOs: ['windows32', 'windows64'],
+          service: true,
+        };
+
+        for (let key in game) {
+          // key : 'title', 'price', 'language', 'supportOs', 'service'
+
+          // .을 통한 방법 : 객체명.속성명
+          // => game 객체에 key라는 이름의 속성명을 찾음 (undefined)
+          // area3.innerHTML += key + ' : ' + game.key + '<br>';
+
+          // []을 통한 방법 : 객체명['속성명']
+          // -> 객체에서 for in 문을 사용할 경우 각 속성 값에 접근하려면 반드시 대괄호를 이용한 방법을 써야함!!!
+          area3.innerHTML += `${key} : ${game[key]} <br>`;
+        }
+
+        // in 뒤에 객체 제시시
+        // 반복문 돌 때 마다 해당 객체의 속성명들이 앞쪽의 변수에 담긴다.
+      }
+
+      btn3.addEventListener('click', test3);
+    </script>
+  </body>
+</html>
