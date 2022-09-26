@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+    <style>
+      .area {
+        width: 500px;
+        height: 100px;
+        background-color: lightgrey;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>함수 (function)</h1>
+
+    <h3>* 선언적 함수</h3>
+
+    <pre>
+        [ 표현법 ]
+        function 함수명(매개변수, 매개변수, 매개변수, ...) {
+            
+            해당 함수 호출 시 실행할 소스코드;
+
+            return 결과값;
+        }
+    </pre>
+
+    <button onclick="test1();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+      function test1() {
+        document.querySelector('#area1').innerHTML += 'test1() 함수 실행됨 <br>';
+      }
+    </script>
+    <hr />
+
+    <h3>* 익명 함수</h3>
+    <pre>
+        특정 변수나 속성에 "대입"되는 함수 제시시 주로 사용됨
+        (주로 이벤트 핸들러 작성 시 사용)
+        [ 표현법 ]
+        변수 = function(매개변수명, 매개변수명, ...) {
+            소스코드;
+        };
+    </pre>
+    <button id="btn2">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+      const btn2 = document.querySelector('#btn2');
+      btn2.onclick = function () {
+        // 이벤트속성에 대입되는 function == 이벤트 핸들러
+        document.getElementById('area2').innerHTML += '이벤트핸들러를 통해 실행됨 <br>';
+      };
+    </script>
+
+    <hr />
+    <h2>함수의 매개변수</h2>
+
+    <!-- btn[onlick=]{실행확인}*8> -->
+    <button onclick="test3('안녕하세요')">실행확인</button>
+    <button onclick="test3(10)">실행확인</button>
+    <button onclick="test3([1,2,3])">실행확인</button>
+    <button onclick="test3(true)">실행확인</button>
+    <button onclick="test3(prompt('이름을 입력하시오.'))">실행확인</button>
+
+    <!-- 
+        정의해둔 매개변수의 갯수보다 더 많이 전달하는게 가능하다.
+        단, 초과된 전달 값은 무시된다.
+     -->
+
+    <button onclick="test3('안녕하세요','반갑습니다.')">실행확인</button>
+    <button onclick="test3(10,'안녕하세요',true)">실행확인</button>
+
+    <!-- 
+        정의해둔 매개 변수의 갯수보다 더 적게 전달하는게 가능하다.
+        미달된 매개 변수의 값은 undefined로 정의된다.
+     -->
+    <button onclick="test3()">실행확인</button>
+
+    <div id="area3" class="area"></div>
+
+    <script>
+      const area3 = document.querySelector('#area3');
+
+      function test3(value) {
+        area3.innerHTML = value;
+      }
+    </script>
+
+    <hr />
+
+    <h3>* 매개변수 괸련 argument 배열</h3>
+
+    <p>
+      함수 호출 시 전달되는 값은 내북저으로 arguments 라는 배열에 담김 <br />
+      * arguments : 모든 함수마다 내부적으로 하나씩 존재하는 배열 객체 <br />
+      (자바의 main 메소드의 정의부에 존재하는 String[] args와 같은 역할)
+    </p>
+
+    <button onclick="test4(11,12,1,5,7)" id="btn4">실행확인</button>
+    <div id="area4" class="area"></div>
+
+    <script>
+      const area4 = document.querySelector('#area4');
+
+      function test4() {
+        // console.log(arguments);
+        // console.log(arguments[0]);
+
+        // arguments 배열의 모든 값을 더해서 div에 출력
+        let sum = 0;
+
+        for (let i = 0; i < arguments.length; i++) {
+          sum += arguments[i];
+        }
+
+        document.querySelector('#area4').innerHTML = `총합 : ${sum} <br>`;
+        document.querySelector('#area4').innerHTML += `평균 : ${sum / arguments.length} <br>`;
+      }
+    </script>
+
+    <hr />
+
+    <h3>* 매개변수 있는 함수에 this 관련 전달하기</h3>
+
+    <!-- 
+      this <-- 이벤트를 당하는 요소를 나타냄
+      ex) 버튼 요소에 click event를 걸었다면? click을 당하는 요소 == btn <- this
+          브라우저 창에 모든 요소들이 한번 로딩되었다면? => 로딩을 당하는 window 객체 <- this
+     -->
+
+    <!-- 해당 버튼 요소 자체가 넘겨짐 -->
+    <button id="btn5">버튼 1</button>
+    <!-- this.innerHTML을 넘길 경우 시작 태그와 종료 태그 사이의 값이 전달됨 -->
+    <button onclick="test5(this.innerHTML)">버튼 2</button>
+    <input type="button" value="버튼 3" onclick="test5(this.value)" />
+    <input type="button" id="btn5_2" value="버튼 3_2" onclick="test5(this.value)" />
+
+    <button id="btn5_3" onclick="test5(this.id)">버튼 4</button>
+    <script>
+      btn5 = document.querySelector('#btn5');
+      btn5_2 = document.querySelector('#btn5_2');
+
+      function test5(item) {
+        console.log(item);
+      }
+
+      btn5.addEventListener('click', test5);
+      btn5_2.addEventListener('click', test5);
+    </script>
+
+    <hr />
+
+    <h2>함수의 리턴</h2>
+
+    <h3>* 일반적인 값 리턴</h3>
+    <button id="btn6">실행확인</button>
+
+    <div id="area6" class="area"></div>
+
+    <script>
+      const area6 = document.querySelector('#area6');
+      const btn6 = document.querySelector('#btn6');
+
+      // 0~100 사이의 랜덤 값을 구해서 반환해주는 함수 만들기
+      function ran() {
+        // 자바스크립트에서의 Math.random() : 0.0 ~ 0.9999999999...
+        return parseInt(Math.random() * 100) + 1;
+      }
+
+      function test6() {
+        area6.innerHTML += `랜덤값 : ${ran()} <br>`;
+      }
+
+      btn6.addEventListener('click', test6);
+    </script>
+
+    <hr />
+
+    <h3>* 익명 함수를 리턴하는 함수</h3>
+
+    이름 : <input type="text" id="userName" />
+    <button id="btn7">실행확인</button>
+
+    <script>
+      const btn7 = document.querySelector('#btn7');
+      const userName = document.querySelector('#userName');
+
+      function test7() {
+        // alert(`${userName.value}님 환영합니다 ^^`);
+
+        return function () {
+          alert(`${userName.value}님 환영합니다 ^^`);
+        };
+      }
+      btn7.addEventListener('click', test7());
+    </script>
+
+    <hr />
+
+    <h3>* 간단한 사칙연산 계산기 만들기 - 함수 개념 활용</h3>
+
+    정수1 : <input type="number" id="num1" /><br />
+    정수2 : <input type="number" id="num2" /><br />
+
+    <label id="result"></label><br />
+
+    <button onclick="op(1)">덧셈</button>
+    <button onclick="op(2)">뺄셈</button>
+    <button onclick="op(3)">곱셈</button>
+    <button onclick="op(4)">나눗셈</button>
+    <script>
+      const result = document.querySelector('#result');
+      const num1 = document.querySelector('#num1');
+      const num2 = document.querySelector('#num2');
+
+      function op(operator) {
+        let resultNum = 0;
+        // 숫자값 : 1(덧셈), 2(뺄셈), 3(곱셈), 4(나눗셈)
+        switch (operator) {
+          case 1:
+            resultNum = Number(num1.value) + Number(num2.value);
+            break;
+          case 2:
+            resultNum = Number(num1.value) - Number(num2.value);
+            break;
+          case 3:
+            resultNum = Number(num1.value) * Number(num2.value);
+            break;
+          case 4:
+            resultNum = Number(num1.value) / Number(num2.value);
+            break;
+          default:
+            resultNum = '올바른 연산자가 아닙니다.';
+        }
+        result.innerText = resultNum;
+      }
+    </script>
+  </body>
+</html>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
