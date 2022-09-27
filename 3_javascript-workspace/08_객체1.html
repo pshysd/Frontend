@@ -191,5 +191,171 @@
 
       btn3.addEventListener('click', test3);
     </script>
+
+    <hr />
+
+    <h3>* 객체의 메소드 속성</h3>
+
+    <p>객체의 속성 중 함수 자료형인 속성을 메소드라고 부른다</p>
+
+    <button id="btn4">실행확인</button>
+    <div id="area4" class="area small"></div>
+
+    <script>
+      const area4 = document.querySelector('#area4');
+      const btn4 = document.querySelector('#btn4');
+
+      function test4() {
+        let name = '김가현';
+        let dog = {
+          name: '토토',
+          kind: '푸들',
+          eat: function (food) {
+            // area4.innerText = 'eat 메소드가 호출되었습니다.';
+            // area4.innerText = food;
+
+            // 푸들 종류인 토토가 고구마를 먹고있어요 형태로 출력
+            area4.innerText = `${this.kind}종류인 ${this.name}가 ${food}를 먹고있어요`;
+          },
+        };
+        dog.eat('사과');
+      }
+      btn4.addEventListener('click', test4);
+    </script>
+
+    <hr />
+
+    <h3>* in과 with 키워드</h3>
+    <pre>
+      in : 객체 내에 해당 속성이 있는지 확인해주는 키워드
+      with : 객체 명을 매번 제시하는 것을 생략해주는 키워드 (코드를 줄여주는 키워드)
+    </pre>
+    이름 : <input type="text" id="name" /><br />
+    국어 : <input type="number" id="kor" /><br />
+    수학 : <input type="number" id="math" /><br />
+    영어 : <input type="number" id="eng" /><br />
+
+    <button id="btn5">실행확인</button>
+    <div id="area5" class="area big"></div>
+
+    <script>
+      const btn5 = document.querySelector('#btn5');
+      const area5 = document.querySelector('#area5');
+
+      function test5() {
+        const name = document.querySelector('#name').value;
+        const kor = document.querySelector('#kor').value;
+        const math = document.querySelector('#math').value;
+        const eng = document.querySelector('#eng').value;
+
+        console.log(kor);
+        let student = {
+          name,
+          kor,
+          math,
+          eng,
+
+          toString: function () {
+            return `${this.name} ${this.kor} ${this.math} ${this.eng}`;
+          },
+          getSum: function () {
+            return this.kor + this.math + this.eng;
+          },
+          getAvg: function () {
+            return this.getSum() / 3;
+          },
+        };
+        area5.innertext = `student <br> ${student.toString()} <br>`;
+        area5.innerHTML += `sum : ${student.getSum()} <br>`;
+        area5.innerHTML += `avg : ${student.getAvg()} <br>`;
+
+        // '속성명' in 객체명 : 해당 객체 내에 해당 속성이 존재할 경우 true 반환, 아니면 false 반환
+        area5.innerHTML += `name이라는 속성이 있나? : ${'name' in student} <br>`;
+        area5.innerHTML += `sum 속성이 있나? : ${'sum' in student} <br>`;
+        area5.innerHTML += `math 속성이 있나? : ${'math' in student} <br>`;
+
+        // with(객체명) { ~~~ } : 해당 중괄호 내에 해당 객체명이 중복된다면 생략 가능
+        // with 키워드 사용 전
+
+        // area.innerHTML += `학생 이름 : ${student.name} <br>`;
+        // area.innerHTML += `국어점수 : ${student.kor} <br>`;
+        // area.innerHTML += `수학점수 : ${student.math} <br>`;
+        // area.innerHTML += `영어점수 : ${student.eng} <br>`;
+        // area.innerHTML += `총점 : ${student.getSum()} <br>`;
+        // area.innerHTML += `평균 : ${student.getAvg()} <br>`;
+
+        // with 키워드 사용 후
+        with (student) {
+          area5.innerHTML += `학생이름 : ${name} <br>`;
+          area5.innerHTML += `국어점수 : ${kor} <br>`;
+          area5.innerHTML += `수학점수 : ${math} <br>`;
+          area5.innerHTML += `영어점수 : ${eng} <br>`;
+          area5.innerHTML += `총점 : ${getSum()} <br>`;
+          area5.innerHTML += `평균 : ${getAvg()} <br>`;
+          // 모든 곳에 student.이 생략 가능해짐! 물론 써도 무방합니다
+        }
+      }
+      btn5.addEventListener('click', test5);
+    </script>
+
+    <hr />
+
+    <h3>* 객체의 속성 추가 및 제거</h3>
+
+    <button id="btn6">실행확인</button>
+    <div id="area6" class="area small"></div>
+
+    <script>
+      const btn6 = document.querySelector('#btn6');
+      const area6 = document.querySelector('#area6');
+
+      function test6() {
+        // 테스트용 빈 object 객체 생성
+        let student = {};
+
+        // console.log(student);
+
+        // 비어있는 객체에 속성 추가
+        // 객체명.속성명 = 값;
+        student.name = '홍길동';
+        student.hobby = ['게임', '음악감상'];
+        student.dream = '프로게이머';
+        student.age = '20';
+
+        console.log(student);
+
+        // 객체 내에 중복된 키 값을 추가
+        // -> 중복된 속성 존재 불가, 덮어씌워짐을 볼 수 있음
+        student.dream = '프로그래머';
+
+        console.log(student);
+
+        // with 키워드의 경우에는 속성 추가가 되지 않음
+        // -> with 키워드는 속성 값을 가져오는 용도로만 사용 가능
+        with (student) {
+          address = '서울시';
+        }
+        console.log(student);
+
+        student.toString = function () {
+          let str =
+            `name : ${this.name} <br>` +
+            `hobby : ${this.hobby} <br>` +
+            `dream : ${this.dream} <br>` +
+            `age : ${this.age} <br>`;
+
+          return str;
+        };
+        area6.innerHTML = `student : <br>${student}`;
+
+        // 객체로부터 속성 제거
+        // delete(객체명.제거할속성명);
+        delete student.hobby;
+
+        area6.innerHTML += `student : ${student}+<br>`;
+        // 제거된 hobby 속성이 undefined로 출력됨
+      }
+      btn6.addEventListener('click', test6);
+    </script>
   </body>
 </html>
