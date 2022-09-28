@@ -1,66 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>window용 객체</title>
-    <style>
-      .area {
-        width: 300px;
-        height: 100px;
-        font-style: 50px;
-        color: red;
-      }
-      .small {
-        height: 100px;
-      }
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>window용 객체</title>
+        <style>
+            .area {
+                width: 300px;
+                height: 100px;
+                font-style: 50px;
+                color: red;
+            }
+            .small {
+                height: 100px;
+            }
 
-      .big {
-        height: 300px;
-      }
+            .big {
+                height: 300px;
+            }
 
-      .small,
-      .big,
-      .area {
-        background-color: lightgrey;
-        border: 1px solid black;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>window용 객체</h1>
+            .small,
+            .big,
+            .area {
+                background-color: lightgrey;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>window용 객체</h1>
 
-    <pre>
+        <pre>
         window 객체는 자바스크립트의 최상위 객체 크게 BOM DOM으로 나뉨
         - BOM (Browser Object Model) : 브라우저 창을 핸들링 가능
                                         (window, location, screen, navigator, history)
         - DOM (Document Object Model) : 요소들을 핸들링 가능
                                         (document)
-    </pre>
+    </pre
+        >
 
-    <h4>- window.open('url', '창의 이름', '창의 특성');</h4>
+        <h4>- window.open('url', '창의 이름', '창의 특성');</h4>
 
-    <button id="btn1">네이버</button>
-    <script>
-      const btn1 = document.querySelector('#btn1');
+        <button id="btn1">네이버</button>
+        <script>
+            const btn1 = document.querySelector('#btn1');
 
-      const test1 = () =>
-        window.open(
-          'https://www.naver.com/',
-          'zz',
-          'width=500, height=600, resizable=no, location=no, menubar=no, scrollbars=no, status=no,toolbar=no',
-        );
-      // window.open();
+            const test1 = () =>
+                window.open(
+                    'https://www.naver.com/',
+                    'zz',
+                    'width=500, height=600, resizable=no, location=no, menubar=no, scrollbars=no, status=no,toolbar=no',
+                );
+            // window.open();
 
-      // window.open('url', '창의 이름', '창의 특성');
-      // 첫번째 매개변수 : 새 창에서 열고자 하는 url 주소
-      // 두번째 매개변수 : 창의 이름, 창의 이름이 이미 같은게 열려있을 경우 새로이 열리지 않고
-      //                    이미 열려있는데서 새로고침(크롬은 새로고침, IE는 새 탭이 뜬다.)
-      // 세번째 매개변수 : 창의 특성, 새로이 열릴 창의 너비, 높이, 툴바, 스크롤바, 상태표시줄 등등
-      //                    (브라우저마다 다름)
+            // window.open('url', '창의 이름', '창의 특성');
+            // 첫번째 매개변수 : 새 창에서 열고자 하는 url 주소
+            // 두번째 매개변수 : 창의 이름, 창의 이름이 이미 같은게 열려있을 경우 새로이 열리지 않고
+            //                    이미 열려있는데서 새로고침(크롬은 새로고침, IE는 새 탭이 뜬다.)
+            // 세번째 매개변수 : 창의 특성, 새로이 열릴 창의 너비, 높이, 툴바, 스크롤바, 상태표시줄 등등
+            //                    (브라우저마다 다름)
 
-      /*
+            /*
         * 창의 특성
         -> px 단위
         width : 창의 너비
@@ -77,139 +78,274 @@
         여러 속성을 한번에 지정하고싶다면 ','로 나열한다.
         '속성명 = 속성값, 속성명 = 속성값'
       */
-      btn1.addEventListener('click', test1);
+            btn1.addEventListener('click', test1);
 
-      // CHROME VS IE
-      // 공통점 : 주소창 수정 안됨, toolbar 없음, 상태표시줄 없음, 메뉴바 없음
-      // 차이점
-      // CHROME : scrollbar O, resizable O
-      // IE : scrollbar X, resizable X
+            // CHROME VS IE
+            // 공통점 : 주소창 수정 안됨, toolbar 없음, 상태표시줄 없음, 메뉴바 없음
+            // 차이점
+            // CHROME : scrollbar O, resizable O
+            // IE : scrollbar X, resizable X
 
-      // CHROME : 속성이 거의 적용되지 않음(no 해도 yes)
-      // IE : 모든 속성이 대부분 적용됨 (no 하면 no하고 yes하면 yes 한단 소리)
-    </script>
+            // CHROME : 속성이 거의 적용되지 않음(no 해도 yes)
+            // IE : 모든 속성이 대부분 적용됨 (no 하면 no하고 yes하면 yes 한단 소리)
+        </script>
 
-    <hr />
+        <hr />
 
-    <h3>* window 객체의 timer 관련 메소드들</h3>
+        <h3>* window 객체의 timer 관련 메소드들</h3>
 
-    <h4>- window.setTimeout(함수, ms;)</h4>
+        <h4>- window.setTimeout(함수, ms;)</h4>
 
-    <button id="btn2">실행확인</button>
+        <button id="btn2">실행확인</button>
 
-    <script>
-      const btn2 = document.querySelector('#btn2');
-      // n초 뒤에 어떤 일을 '한번' 수행하고 싶을 경우 사용
+        <script>
+            const btn2 = document.querySelector('#btn2');
+            // n초 뒤에 어떤 일을 '한번' 수행하고 싶을 경우 사용
 
-      //3초 후에 해당 페이지가 닫히게
-      const test2 = () => {
-        const newWindow = window.open();
-        // window.open 함수는 새로 열린 창의 window 객체를 반환
+            //3초 후에 해당 페이지가 닫히게
+            const test2 = () => {
+                const newWindow = window.open();
+                // window.open 함수는 새로 열린 창의 window 객체를 반환
 
-        newWindow.alert('3초 후에 이 페이지는 닫힙니다.');
+                newWindow.alert('3초 후에 이 페이지는 닫힙니다.');
 
-        setTimeout(function () {
-          newWindow.close();
-        }, 3000);
-        //newWindow.close();
-        // window.close 함수는 현재 이 부라우저 창을 닫아주는 역할
-      };
+                setTimeout(function () {
+                    newWindow.close();
+                }, 3000);
+                //newWindow.close();
+                // window.close 함수는 현재 이 부라우저 창을 닫아주는 역할
+            };
 
-      btn2.addEventListener('click', test2);
-    </script>
-    <hr />
+            btn2.addEventListener('click', test2);
+        </script>
+        <hr />
 
-    <h4>- window.setInterval(함수, ms);</h4>
+        <h4>- window.setInterval(함수, ms);</h4>
 
-    <button id="btn3">실행확인</button>
-    <div id="area3" class="area"></div>
+        <button id="btn3">실행확인</button>
+        <div id="area3" class="area"></div>
 
-    <script>
-      const area3 = document.querySelector('#area3');
-      const btn3 = document.querySelector('#btn3');
+        <script>
+            const area3 = document.querySelector('#area3');
+            const btn3 = document.querySelector('#btn3');
 
-      function test3() {
-        // 1초마다 'ㅋ'를 출력하겠다
-        // setInterval(() => (area3.innerHTML += 'ㅋ'), 100);
+            function test3() {
+                // 1초마다 'ㅋ'를 출력하겠다
+                // setInterval(() => (area3.innerHTML += 'ㅋ'), 100);
 
-        // 1초씩 카운트
-        // let count = 0;
-        // setInterval(() => (area3.innerHTML = count++), 1000);
+                // 1초씩 카운트
+                // let count = 0;
+                // setInterval(() => (area3.innerHTML = count++), 1000);
 
-        // 시계 만들기 (시분초만)
-        setInterval(function () {
-          // setInterval : 내가 지정한 시간 간격마다 '매번' 함수를 실행
+                // 시계 만들기 (시분초만)
+                setInterval(function () {
+                    // setInterval : 내가 지정한 시간 간격마다 '매번' 함수를 실행
 
-          // 숙제 : 년, 월, 일도 출력하기
-          const date = new Date();
+                    // 숙제 : 년, 월, 일도 출력하기
+                    const date = new Date();
 
-          const year = String(date.getFullYear()); // 년
-          const month = String(date.getMonth() - 1); // 월
-          const day = String(date.getDate()); // 일
+                    const year = String(date.getFullYear()); // 년
+                    const month = String(date.getMonth() - 1); // 월
+                    const day = String(date.getDate()); // 일
 
-          let hour = date.getHours(); // 시
-          const min = String(date.getMinutes()); // 분
-          const sec = String(date.getSeconds()); // 초
+                    let hour = date.getHours(); // 시
+                    const min = String(date.getMinutes()); // 분
+                    const sec = String(date.getSeconds()); // 초
 
-          if (hour > 12) {
-            hour -= 12;
-          }
-          hour = String(hour);
+                    if (hour > 12) {
+                        hour -= 12;
+                    }
+                    hour = String(hour);
 
-          area3.innerHTML = `
+                    area3.innerHTML = `
           ${year}년 
           ${month.padStart(2, 0)}월 
           ${day.padStart(2, 0)}일 
           ${hour.padStart(2, 0)}시
           ${min.padStart(2, 0)}분
           ${sec.padStart(2, 0)}초`;
-        }, 1000);
-      }
-      btn3.addEventListener('click', test3);
-    </script>
+                }, 1000);
+            }
+            btn3.addEventListener('click', test3);
+        </script>
 
-    <hr />
+        <hr />
 
-    <h1>* BOM (Browser Object Model)</h1>
+        <h1>* BOM (Browser Object Model)</h1>
 
-    <h3>location 객체</h3>
+        <h3>location 객체</h3>
 
-    <pre>
+        <pre>
       브라우저 주소창과 관련된 객체
-    </pre>
+    </pre
+        >
 
-    <button id="btn4">실행확인</button>
-    <br /><br />
+        <button id="btn4">실행확인</button>
+        <br /><br />
 
-    <a href="https://www.naver.com" id="hyper">네이버로 이동</a>
-    <!-- 굳이 a 태그가 아니더라도 url 이동을 할 수 있음 -->
-    <br /><br />
+        <a href="https://www.naver.com" id="hyper">네이버로 이동</a>
+        <!-- 굳이 a 태그가 아니더라도 url 이동을 할 수 있음 -->
+        <br /><br />
 
-    <label onclick="location.href='https://www.naver.com/'" id="lb4">네이버로 이동</label>
-    <br /><br />
+        <label onclick="location.href='https://www.naver.com/'" id="lb4">네이버로 이동</label>
+        <br /><br />
 
-    <!-- location 객체의 assign, replace, reload 속성의 값은 메소드 -->
-    <button onclick="location.assign('https://www.google.com/')">구글로 이동</button>
-    <br />
-    <button onclick="location.replace('https://www.google.com/')">구글로 이동</button>
-    <!-- replace는 뒤로가기를 사용할 수 없음 -->
-    <br /><br />
+        <!-- location 객체의 assign, replace, reload 속성의 값은 메소드 -->
+        <button onclick="location.assign('https://www.google.com/')">구글로 이동</button>
+        <br />
+        <button onclick="location.replace('https://www.google.com/')">구글로 이동</button>
+        <!-- replace는 뒤로가기를 사용할 수 없음 -->
+        <br /><br />
 
-    <!-- reload 메소드 : 새로고침을 해주는 메소드 -->
-    <!-- 자바스클비트로 새로고침하는 두가지 방법 -->
+        <!-- reload 메소드 : 새로고침을 해주는 메소드 -->
+        <!-- 자바스클비트로 새로고침하는 두가지 방법 -->
 
-    <button onclick="location.href=location.href;">새로고침</button>
-    <!-- 무식하노 -->
-    <button onclick="location.reload()">새로고침</button>
-    <script>
-      const btn4 = document.querySelector('#btn4');
-      const lb4 = document.querySelector('#lb4');
-      const hyper = document.querySelector('#hyper');
+        <button onclick="location.href=location.href;">새로고침</button>
+        <!-- 무식하노 -->
+        <button onclick="location.reload()">새로고침</button>
+        <script>
+            const btn4 = document.querySelector('#btn4');
+            const lb4 = document.querySelector('#lb4');
+            const hyper = document.querySelector('#hyper');
 
-      function test4() {
-        console.log(object);
-      }
-      btn4.addEventListener('click', test4);
-    </script>
-  </body>
+            function test4() {
+                console.log(object);
+            }
+            btn4.addEventListener('click', test4);
+        </script>
+
+        <h3>screen 객체</h3>
+        <!-- 클라이언트 컴퓨터 화면에 대한 속성 값을 가지고 있는 객체 (해상도에 영향을 받음)-->
+        <button onclick="console.log(creen);">screen 객체 확인</button>
+        <!-- 해상도에 따라 가로, 세로 해상도 값이 다 다르다 -->
+
+        <h3>navigator 객체</h3>
+        <!-- 브라우저에 대한 정보를 가지는 객체 (브라우저 종류에 영향을 받음) -->
+        <button onclick="console.log(navigator);">객체 확인</button>
+        <!-- 브라우저 종류에 따라 제조사나, 세팅환경 등의 값들이 다 다르다 -->
+
+        <h3>history 객체</h3>
+        <!-- 이 브라우저의 열람 이력 정보를 저장하는 객체 -->
+        <button onclick="console.log(history);">history 객체 확인</button>
+        <!-- 윈도우의 열람 이력을 통해 뒤로가기 등의 기능을 구현할 수 있음 -->
+
+        <hr />
+
+        <h1>* DOM (Document Object Model)</h1>
+
+        <pre>
+      HTML에 있는 각각의 태그들을 노드(Node)라고 한다
+      - 요소 노드(ELement Node) : 태그 그 자체만을 의미
+      - 텍스트 노드 (Text Node) : 태그 내에 기록되는 내용
+
+      텍스트 노드가 존재하는 요소 : 시작 태그와 종료 태그가 한 쌍을 이루어져 있는 요소들(div, a, h1, h2, ... p, pre, ...)
+
+      텍스트 노드가 존재하지 않는 요소 : 시작 태그로만 이루어져 있는 요소들
+                                          (img, input ...)
+    </pre
+        >
+
+        <div>
+            <h2>안녕</h2>
+            <!--  <h2></h2> <-- 요소 노드 ,,, 안녕 <- 텍스트 노드 -->
+            <p>
+                <img src="" alt="" />
+            </p>
+        </div>
+
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>* 노드 생성과 관련된 메소드</h3>
+
+        <h4>- 텍스트 노드가 존재하는 노드 생성(시작태그 + 종료태그)</h4>
+
+        <button id="btn5">실행확인</button>
+        <div id="area5" class="small"></div>
+
+        <script>
+            const btn5 = document.querySelector('#btn5');
+            const area5 = document.querySelector('#area5');
+
+            const test5 = () => {
+                // <h3>안녕하세요</h3> 만들기
+                const h3 = document.createElement('h3');
+                h3.textContent = '안녕하세요';
+                area5.appendChild(h3);
+
+                // 동적으로 요소를 만들기
+                // -> 처음으로 브라우저 창에 화면이 로딩되었을 때에는 없던 요소가
+                //  자바스크립트 코드가 실행되는 시점에서 만들어져서 화면에 뿌려짐
+
+                // 방법 1 : innerHTML
+
+                // 방법 2 : document 객체에서 제공하는 메소드를 통해
+                //          '요소 객체'로 만드는 방법
+
+                // 1) 요소 노드 생성 : elementNode 이름의 객체 생성
+                // const elementNode = document.createElement('h3');
+                // console.log(elementNode);
+
+                // 2) 텍스트 노드 생성 : textNode 이름의 객체 생성
+                // const textNode = document.createTextNode('안녕하세요');
+                // console.log(textNode);
+
+                // 3) 두 개의 노드를 연결 : 즉, 요소노드 하위로 텍스트노드 추가
+                // elementNode.appendChild(textNode);
+
+                area5.appendChild(elementNode);
+            };
+            btn5.addEventListener('click', test5);
+        </script>
+
+        <button id="btn6">실행확인</button>
+        <div id="area6" class="area big"></div>
+
+        <script>
+            const btn6 = document.querySelector('#btn6');
+            const area6 = document.querySelector('#area6');
+
+            const test6 = () => {
+                // <img>
+
+                // 1) 요소 노드 생성
+                const img = document.createElement('img');
+
+                img.src = 'https://www.iei.or.kr/resources/images/main/main_renewal/top_logo.jpg';
+                img.width = '200';
+                img.height = '100';
+
+                area6.appendChild(img);
+
+                console.log(img);
+            };
+
+            btn6.addEventListener('click', test6);
+        </script>
+
+        <hr />
+
+        <h4>- 노드 삭제</h4>
+
+        <button id="btn7">삭제</button>
+
+        <script>
+            const btn7 = document.querySelector('#btn7');
+
+            const test7 = () => {
+                // 지우고자 하는 요소 객체.remove();
+
+                // div 요소 객체의 첫번째 자손을 지우겠다.
+                // area6.firstChild.remove();
+
+                // div 요소 객체의 맨 뒤의 자손을 지우겠다. (맨 뒤에 것이 지워짐)
+                area6.lastChild.remove();
+            };
+            btn7.addEventListener('click', test7);
+        </script>
+    </body>
 </html>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
