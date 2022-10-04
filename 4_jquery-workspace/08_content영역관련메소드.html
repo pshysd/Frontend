@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content 영역 관련 메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Content 영역 (innerHTML, innerText) 관련 메소드</h1>
+
+    <h3>* html('문구') 메소드 : innerHTML 속성과 관련된 메소드</h3>
+
+    <pre>
+        선택된 요소의 content 영역(시작 태그와 종료 태그 사이)을 리턴해주거나
+        또는 변경해주는 메소드
+        - $('선택자').html() : 선택된 요소의 content 영역의 값을 리턴 <!-- 자바의 getter -->
+        - $('선택자').html('문구') : 선택된 요소의 content 영역의 값을 해당 문구로 변경 <!-- 자바의 setter -->
+    </pre>
+
+    <h1 id="test1">
+        <a href="">네이버로</a>
+    </h1>
+
+    <h1 id="test2">
+
+    </h1>
+
+    <script>
+        $(() => {
+
+            // 순수 자바스크립트 방식
+            // let tmp = document.getElementById('test1').innerHTML;
+
+            // jQuery 방식
+            let tmp = $('#test1').html();
+
+            // 순수 자바스크립트 방식
+            // document.getElementById('test2').innerHTML = tmp;
+
+            // jQuery 방식
+            $('#test2').html(tmp);
+            // a 태그가 해석이 되어 출력
+            $('#test2').children().attr('href', 'https://www.naver.com');
+        })
+    </script>
+</body>
+
+</html>
