@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>종합응용예시</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+
+        <!-- Popper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            tbody > tr:hover {
+                cursor: pointer;
+                color: white;
+                background-color: lightgrey;
+            }
+        </style>
+
+        <!-- 
+            * 부트스트랩
+            웹 사이트를 쉽게 꾸밀 수 있게 도와주는 HTML, CSS, JS 프레임워크 (뀨칙성이 강한 라이브러리)
+         -->
+    </head>
+    <body>
+        <h2>게시판 리스트</h2>
+
+        <br />
+        <!-- Table에 클래스를 table, table-hover 추가해주면 스타일이 바뀜 (부트스트랩)-->
+        <table class="table-hover">
+            <thead>
+                <tr>
+                    <td>글 번호</td>
+                    <td>제목</td>
+                    <td>작성자</td>
+                    <td>조회수</td>
+                    <td>작성일</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3</td>
+                    <td>세번째 글 제목입니다.</td>
+                    <td>user01</td>
+                    <td>26</td>
+                    <td>2021.09.21</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>두번째 글 제목입니다.</td>
+                    <td>user03</td>
+                    <td>15</td>
+                    <td>2021.08.24</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>첫번째 글 제목입니다.</td>
+                    <td>admin</td>
+                    <td>230</td>
+                    <td>2021.08.01</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br /><br />
+
+        선택된 게시글 정보 :
+        <label id="l1">글번호</label> / <label id="l2">제목</label> / <label id="l3">작성자</label> /
+        <label id="l4">조회수</label> /
+        <label id="l5">작성일</label>
+
+        <script>
+            $(() => {
+                // tbody의 tr들 중에 클릭 이벤트가 발생한 경우
+                $('tbody>tr').click(function () {
+                    // console.log($(this));
+                    // 이벤트 핸들러 내에서의 $(this) == 현재 이벤트를 당한 target
+
+                    // console.log($(this).children());
+                    // tr의 자식들 => 5개의 td 태그들 [td,td,td,td,td]
+
+                    // console.log($(this).children().eq(0));
+                    //0번쨰 인덱스에 들은 글 번호를 담은 td
+
+                    // console.log($(this).children().eq(0).text());
+                    // 현재 선택된 ($(this)) 요소의 자식들 중에서 0번째 요소인 (<td>글번호</td>)의 내용물만 가져오겠다
+
+                    /*
+                    $('#l1').text($(this).children().eq(0).text());
+                    $('#l2').text($(this).children().eq(1).text());
+                    $('#l3').text($(this).children().eq(2).text());
+                    $('#l4').text($(this).children().eq(3).text());
+                    $('#l5').text($(this).children().eq(4).text());
+                    */
+
+                    // each 메소드 활용
+                    $(this)
+                        .children()
+                        .each(function (index, el) {
+                            // index : 순차적으로 접근할 때 마다의 인덱스 수 (0 ~ 4)
+                            // el : 순차적으로 접근되는 요소 객체 (td 태그)
+
+                            // console.log(el.innerText); <- 자바스크립트 방식
+                            console.log($(el).text());
+
+                            $('#l' + (index + 1)).text($(el).text());
+                        });
+
+                    // 해당 tr이 클릭되었을 때
+                });
+            });
+        </script>
+
+        <hr />
+
+        <!-- 자주 쓰일 법한 버튼 스타일들 (부트스트랩) -->
+        <button class="btn btn-primary btn-sm">로그인</button>
+        <button class="btn btn-outline-secondary">회원가입</button>
+        <button class="btn btn-success btn-lg">회원탈퇴</button>
+        <button class="btn btn-danger">게시글 작성하기</button>
+        <button class="btn btn-outline-warning">게시글 수정하기</button>
+
+        <!-- 다른 태그에도 버튼 모양을 지정할 수 있음 -->
+        <br /><br />
+
+        <div class="btn btn-success btn-block">네이버로</div>
+        <a class="btn btn-warning btn-block">구글로</a>
+
+        <br /><br />
+
+        <hr />
+
+        <hr />
+
+        <!-- 
+            모달창 예시
+            : 알림창, 대화상자, 팝업창 같은 것 => div 요소로 만들어져있음
+         -->
+
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">로그인 하기</button>
+
+        <!-- The Modal -->
+        <div class="modal" id="loginModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">Modal body..</div>
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="userId">ID:</label>
+                            <input type="text" class="form-control" placeholder="Enter ID" id="userId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" placeholder="Enter password" id="pwd" />
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" /> Remember me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <!-- Modal footer -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>이벤트 핸들러</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>이벤트 핸들러 (이벤트 발생 시 실행할 function) 연결 방법 종류</h1>
+
+        <h3>* 방법 1</h3>
+
+        <pre>
+            [ 표현법 ]
+            $('선택자').이벤트메소드(function() {
+                해당 요소에 해당 이벤트 발생 시 실행할 내용;
+            })
+        </pre>
+
+        <h4>클릭해보세요</h4>
+
+        <br /><br />
+
+        <h3>* 방법 2 메소드를 이용한 방법</h3>
+
+        <pre>
+            [ 표현법 ]
+            $('선택자').on('이벤트명', function() {
+                해당 요소에 해당 이벤트 발생 시 실행할 내용;
+            })
+        </pre>
+
+        <h4 id="test2">마우스 클릭 및 올려보세요.</h4>
+
+        <script>
+            /*
+            $(function () {
+                $('#test2').on('click', function () {
+                    $(this).css('backgroundColor', 'orangered').txt('클릭됨');
+                });
+                $('#test2').on('mouseenter', function () {
+                    $(this).css('color', 'purple').text('마우스 올라감');
+                });
+            });
+            */
+            $('#test2').on({
+                click: function () {
+                    $(this).css('backgroundColor', 'orangered').text('clicked');
+
+                    // click 이벤트가 발생하는 순간
+                    // 기존의 mouseenter, mouseout 이벤트 제거
+                    // 이벤트 부여할 때 : on()
+                    // 이벤트 제거할 때 : off()
+                    $(this).off('mouseenter').off('mouseout').txt('event removed');
+                    // 연달아서 이벤트 핸들러 제거 가능
+                },
+
+                mouseenter: function () {
+                    $(this).css('backgroundColor', 'yellowgreen').text('mouse entered');
+                },
+
+                mouseout: function () {
+                    $(this).css('backgroundColor', 'yellow').text('mouse out');
+                },
+            });
+        </script>
+
+        <br /><br />
+
+        <h3>* 방법 3 on 메소드를 이용한 방법2</h3>
+
+        <pre>
+            [ 표현법 ]
+            $('상위요소선택자').on('이벤트명','하위요소선택자', function() {
+                선택된 상위요소 선택자 안에 존재하는 해당 하위요소에 해당 이벤트가 발생했을 때 실행
+            });
+        </pre>
+
+        <div id="wrap">
+            <h4>h4를 클릭하세요.</h4>
+            <h5>h5를 클릭하세요</h5>
+        </div>
+
+        <script>
+            $(() => {
+                // $('#wrap h4').on('click', , (event) => {
+                $('#wrap').on('click', 'h4', (event) => {
+                    alert('클릭되었습니다.');
+                    $(event.target).html('h4가 클릭됨.');
+                });
+
+                // 이 문서의 전체 요소들 중에서 모든 h4, h5에 대해 클릭을 걸고 싶다.
+                $(document).on('click', 'h4, h5', (event) => {
+                    $(event.target).css('backgroundColor', 'purple').css('color', 'pink');
+                });
+
+                // 이 방식은 상위 요소를 기준점 삼아서 이벤트를 부여하는 방식
+            });
+        </script>
+
+        <hr />
+
+        <h3>* 단, 동적으로 만들어진 요소에도 동일한 이벤트를 걸고싶다면 반드시 방법 3으로 진행해야한다.</h3>
+
+        <!-- 동적으로 만들어진 요소 : 처음 문서 로딩시에는 없다가 나중에 새로이 만들어지는 요소 -->
+
+        <div id="wrap2" style="border: 1px solid red">
+            <h6>기존에 존재하는 요소 - 문서 로딩시에 처음부터 만들어짐</h6>
+
+            <!-- append로 새로운 요소를 동적으로 만들어낼 공간 -->
+        </div>
+
+        <script>
+            $(() => {
+                /*
+                // 방법 1. 이벤트 메소드를 호출 : 동적으로 만들어진 요소에 이벤트 적용 안됨
+
+                // $('#wrap2>h6').click(() => {
+                // $('#wrap2').append('<h6>클릭으로 인해 동적으로 만들어진 요소 </h6>');
+                // });
+                */
+
+                /*
+                // 방법2. on 메소드 호출 1 : 동적으로 만들어진 요소에 이벤트 적용 안됨
+                
+                // $('#wrap2>h6').on('click', () => {
+                // $('#wrap2').append('<h6>클릭으로 인해 동적으로 만들어진 요소</h6>');
+                // });
+                */
+
+                // 방법3. on 메소드 호출 2 : 동적으로 만들어진 요소에 이벤트 적용됨
+
+                $('#wrap2').on('click', 'h6', () => {
+                    $('#wrap2').append('<h6>클릭으로 인해 동적으로 만들어진 요소</h6>');
+                });
+            });
+        </script>
+    </body>
+</html>
