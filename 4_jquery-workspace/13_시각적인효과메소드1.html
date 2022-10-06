@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>시각적인 효과 메소드 1</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>시각적인 효과 메소드 (Effect Method)</h1>
+
+        <p>페이지 내에 애니메이션 효과를 만들기 위해 사용되는 메소드 집합</p>
+
+        <h3>* show(), hide(), toggle()</h3>
+
+        <p>
+            선택된 요소가 점점 커지면서 보이고, 점점 작아지면서 사라지게 하는
+            메소드
+        </p>
+
+        <button id="hide">숨기기</button>
+        <button id="show">보여주기</button>
+        <button id="toggle">토글</button>
+
+        <br /><br />
+
+        <img src="resources/image/bonubonu.jpg" id="bonu" />
+
+        <br />
+
+        <!-- 꼭 이미지가 아니더라도 일반적인 다른 요소에도 적용 가능 -->
+
+        <script>
+            $(() => {
+                $('#hide').click(() => {
+                    $('#bonu').hide(3000); // 3초동안 서서히 사라짐
+                    $('#area').hide(1000); // 1초동안 서서히 사라짐
+                });
+
+                $('#show').click(() => {
+                    $('#bonu').show(3000); // 3초동안 서서히 보여짐 (밀리세컨)
+                    $('#area').show(5000); // 5초동안 서서히 보여짐
+                });
+
+                // toggle은 스위치 개념 (on / off) 시간지정 가능
+                $('#toggle').click(() => {
+                    $('#bonu').toggle(10000);
+                    $('#area').toggle(10000);
+                });
+            });
+        </script>
+    </body>
+</html>
