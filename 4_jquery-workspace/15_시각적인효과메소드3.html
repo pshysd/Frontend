@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>시각적인 효과 메소드 3</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <style>
+            div {
+                background-color: mediumspringgreen;
+                width: 300px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px; /* line-height는 height 값과 똑같이 주면 가운데로 잡힌다 */
+                border-radius: 5px;
+                font-weight: 600;
+                border: 1px solid white;
+                cursor: pointer;
+            }
+
+            p {
+                border: 1px solid grey;
+                width: 300px;
+                height: 100px;
+                margin-top: 5px;
+                border-radius: 10px;
+                padding: 10px;
+                box-sizing: border-box;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>* slideDown(), slideUp()을 활용한 쇼핑몰 FAQ의 예</h3>
+
+        <!-- FQA(Frequently Asked Questions) : 자주 묻는 질문 기능 -->
+
+        <!-- 
+            slideDown() : 서서히 내려오면서 보여주는 메소드
+            slideUp() : 서서히 올라가면서 사라지는 메소드
+            slideToggle() : ON / OFF
+         -->
+
+        <div>Q. 반품 언제되나요?</div>
+        <p>A. 지금 확인중입니다.</p>
+
+        <div>Q. 상품 위치를 알고싶습니다.</div>
+        <p>A. 배송 조회를 해보세요. 거기 다 나와있어요.</p>
+
+        <div>Q. 이 사이즈 있나요?</div>
+        <p>A. 몰라요</p>
+
+        <div>Q. 전화 통화 가능한 시간을 알려주세요.</div>
+        <p>
+            A. 카카오톡 플러스친구 채널에 문의해주시면 24시간 내에
+            답변드리겠습니다.
+        </p>
+
+        <div>Q. 판매자가 연락이 안됩니다.</div>
+        <p>A. ㅋㅋ</p>
+
+        <script>
+            $(() => {
+                $('div').click((event) => {
+                    //  $(this).next() : 현재 클릭된 div 바로 뒤에 있는 요소 하나
+                    const $p = $(event.target).next();
+
+                    // 만약 답변을 담은 p 요소가 display : none 상태라면
+                    // 만약 답변을 담은 p 요소가 display : none
+
+                    // 2단계 : 기존에 열려있던 답변을 먼저 닫아주기
+                    $p.is($p.css('display') == 'none') ? $(event.target).siblings('p').slideDown(150) :$(event.target).siblings('p').slideUp(150);
+
+                    // 1단계 : 답변이 보여지게
+
+                    // $(event.target).next().slideToggle(150);
+                });
+            });
+        </script>
+    </body>
+</html>
