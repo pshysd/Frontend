@@ -33,7 +33,7 @@ div[class*=i] {
     color : red;
 }
 
-/* 응용 : class 속성값이 div-class 인 애들 중에서도 name 속성값에 name3 이 포함되어있는 요소들 */
+/* 응용 : class 속성값이 div-class 인 요소들 중에서도 name 속성값에 name3 이 포함되어있는 요소들 */
 .div-class[name~=name3] {
     background-color : pink;
 }
