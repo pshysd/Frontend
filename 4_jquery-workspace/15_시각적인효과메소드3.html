@@ -70,13 +70,12 @@
                     // 만약 답변을 담은 p 요소가 display : none
 
                     // 2단계 : 기존에 열려있던 답변을 먼저 닫아주기
-                    $p.is($p.css('display') == 'none') ? $(event.target).siblings('p').slideDown(150)
-                    // : $(event.target).siblings('p').slideUp(150);
+                    $p.is($p.css('display') == 'none') ? $(event.target).siblings('p').slideDown(150) :$(event.target).siblings('p').slideUp(150);
 
                     // 1단계 : 답변이 보여지게
 
                     // $(event.target).next().slideToggle(150);
-            });
+                });
             });
         </script>
     </body>
